@@ -12,7 +12,7 @@ create_container() {
     sudo docker run -d \
         --name mysql \
         -p 3306:3306 \
-        --health-cmd='mysqladmin ping --silent' \
+        --health-cmd='mysqladmin ping' \
         -e MYSQL_DATABASE="${MYSQL_DATABASE}" \
         -e MYSQL_ROOT_PASSWORD="${MYSQL_ROOT_PASSWORD}" \
         -e MYSQL_USER="${MYSQL_USER}" \
