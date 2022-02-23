@@ -9,7 +9,7 @@ fi
 MYSQL_DATABASE="bookshelve"
 
 create_container() {
-    docker run -d \
+    sudo docker run -d \
         --name mysql \
         -p 3306:3306 \
         --health-cmd='mysqladmin ping --silent' \
