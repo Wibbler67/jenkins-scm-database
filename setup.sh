@@ -31,7 +31,7 @@ grant_user_read_access() {
 
 run_sql_scripts() {
     sudo docker exec -i mysql mysql bookshelve \
-        -uroot -p${MYSQL_ROOT_PASSWORD} < setup.sql 
+        -uroot -p ${MYSQL_ROOT_PASSWORD} < setup.sql 
 }
 
 # if the container doesn't exist
