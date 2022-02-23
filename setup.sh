@@ -2,14 +2,14 @@
 # setup a mysql db in a docker container
 
 # install docker if it isn't already
-if ! sudo docker --version > /dev/null; then
+if ! docker --version > /dev/null; then
     curl -V https://get.docker.com | sudo bash
 fi
 
 MYSQL_DATABASE="bookshelve"
 
 create_container() {
-    sudo docker run -d \
+    docker run -d \
         --name mysql \
         -p 3306:3306 \
         --health-cmd='mysqladmin ping --silent' \
@@ -25,12 +25,12 @@ create_container() {
 grant_user_read_access() {
     command="grant select on ${MYSQL_DATABASE}.* to '${MYSQL_USER}'@'%' identified by '${MYSQL_PASSWORD}'";
     echo "command"
-    sudo docker exec -i mysql mysql --connect-timeout=90 -uroot -p${MYSQL_ROOT_PASSWORD} -e  "${command}"
+    docker exec -i mysql mysql --connect-timeout=90 -uroot -p${MYSQL_ROOT_PASSWORD} -e  "${command}"
     echo "2"
 }
 
 run_sql_scripts() {
-    sudo docker exec -i mysql mysql bookshelve \
+    docker exec -i mysql mysql bookshelve \
         -uroot -p ${MYSQL_ROOT_PASSWORD} < setup.sql 
 }
 
@@ -40,6 +40,6 @@ if [ -z "$(sudo docker ps -qa -f name=mysql)" ]; then
     grant_user_read_access
 # if the container is stopped
 elif [ -n "$(sudo docker ps -q -f status=exited -f name=mysql)" ]; then
-    sudo docker start mysql
+    docker start mysql
 fi
 run_sql_scripts
