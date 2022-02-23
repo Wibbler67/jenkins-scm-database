@@ -3,7 +3,7 @@
 
 # install docker if it isn't already
 if ! sudo docker --version > /dev/null; then
-    wget https://get.docker.com | sudo bash
+    curl https://get.docker.com | sudo bash
 fi
 
 MYSQL_DATABASE="bookshelve"
