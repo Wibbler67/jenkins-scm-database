@@ -3,7 +3,7 @@
 
 # install docker if it isn't already
 if ! sudo docker --version > /dev/null; then
-    curl -V -S https://get.docker.com | sudo bash
+    curl -V https://get.docker.com | sudo bash
 fi
 
 MYSQL_DATABASE="bookshelve"
@@ -12,7 +12,7 @@ create_container() {
     sudo docker run -d \
         --name mysql \
         -p 3306:3306 \
-        --health-cmd='mysqladmin ping' \
+        --health-cmd='mysqladmin ping --silent' \
         -e MYSQL_DATABASE="${MYSQL_DATABASE}" \
         -e MYSQL_ROOT_PASSWORD="${MYSQL_ROOT_PASSWORD}" \
         -e MYSQL_USER="${MYSQL_USER}" \
