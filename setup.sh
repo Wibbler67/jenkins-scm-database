@@ -15,7 +15,7 @@ create_container() {
         --health-cmd='mysqladmin ping --silent' \
         -e MYSQL_DATABASE="${MYSQL_DATABASE}" \
         -e MYSQL_ROOT_PASSWORD="${MYSQL_ROOT_PASSWORD}" \
-        -e MYSQL_USER="${MSQL_USER}" \
+        -e MYSQL_USER="${MYSQL_USER}" \
         -e MYSQL_PASSWORD="${MYSQL_PASSWORD}" \
         mysql:5.7
         while [[ "$(sudo docker inspect --format "{{ .State.Health.Status }}" mysql)" != "healthy" ]]; do 
