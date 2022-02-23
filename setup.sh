@@ -18,10 +18,7 @@ create_container() {
         -e MYSQL_USER="${MYSQL_USER}" \
         -e MYSQL_PASSWORD="${MYSQL_PASSWORD}" \
         mysql:5.7
-        while [[ "$(sudo docker inspect --format "{{ .State.Health.Status }}" mysql)" != "healthy" ]]; do 
-            sleep 1;
-            echo "waiting for mysql db to start..."
-        done 
+
         echo "db started"
 }
 
