@@ -2,7 +2,7 @@
 # setup a mysql db in a docker container
 
 # install docker if it isn't already
-if ! sudo docker --version > /dev/null; then
+if ! docker --version > /dev/null; then
     curl https://get.docker.com | bash
 fi
 
